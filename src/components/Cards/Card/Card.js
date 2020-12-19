@@ -1,11 +1,25 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { productsOperations } from "../../../redux/products";
 import InputForm from "../../InputForm";
 import styles from "./Card.module.css";
 
 const Card = ({ id, img, name, price, description }) => {
+  const dispatch = useDispatch();
+
   const [edit, setEdit] = useState(false);
-  const submit = (data) => {
-    console.log(data);
+  const submit = ({ id, img, name, price, description, type }) => {
+    if (type === "update") {
+      dispatch(
+        productsOperations.updateProduct({ id, img, name, price, description })
+      );
+      setEdit(false);
+    }
+    if (type === "delete") {
+      console.log("!!!")
+      dispatch(productsOperations.deleteProduct(id));
+      setEdit(false);
+    }
   };
 
   const handleSetEdit = () => setEdit((prev) => !prev);
@@ -20,6 +34,7 @@ const Card = ({ id, img, name, price, description }) => {
         name={name}
         price={price}
         description={description}
+        onEdit={edit}
       />
     </div>
   ) : (

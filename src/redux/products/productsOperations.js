@@ -14,30 +14,30 @@ const fetchProducts = () => (dispatch) => {
     );
 };
 
-const addProduct = () => (dispatch) => {
+const addProduct = (product) => (dispatch) => {
   dispatch(productsActions.addProductRequest());
 
   aixos
-    .get(baseUrl)
+    .post(baseUrl, product)
     .then(({ data }) => dispatch(productsActions.addProductSuccess(data)))
     .catch(({ message }) => dispatch(productsActions.addProductError(message)));
 };
-const updateProduct = () => (dispatch) => {
+const updateProduct = (updatedData) => (dispatch) => {
   dispatch(productsActions.updateProductRequest());
 
   aixos
-    .get(baseUrl)
+    .put(baseUrl, updatedData)
     .then(({ data }) => dispatch(productsActions.updateProductSuccess(data)))
     .catch(({ message }) =>
       dispatch(productsActions.updateProductError(message))
     );
 };
-const deleteProduct = () => (dispatch) => {
+const deleteProduct = (id) => (dispatch) => {
   dispatch(productsActions.deleteProductRequest());
 
   aixos
-    .get(baseUrl)
-    .then(({ data }) => dispatch(productsActions.deleteProductSuccess(data)))
+    .delete(baseUrl + id)
+    .then(() => dispatch(productsActions.deleteProductSuccess(id)))
     .catch(({ message }) =>
       dispatch(productsActions.deleteProductError(message))
     );

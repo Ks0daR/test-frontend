@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { productsOperations } from "../../redux/products";
 import styles from "./Cards.module.css";
@@ -8,7 +8,6 @@ const Cards = () => {
   const dispatch = useDispatch();
 
   const products = useSelector((state) => state.products.productsReducer);
-  console.log(products);
 
   useEffect(() => {
     dispatch(productsOperations.fetchProducts());
