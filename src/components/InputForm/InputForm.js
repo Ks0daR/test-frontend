@@ -1,34 +1,68 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Field, reduxForm } from "redux-form";
+import styles from "./InputForm.module.css";
 
 const InputForm = (props) => {
-  const { handleSubmit, reset } = props;
+  const {
+    handleSubmit,
+    name = "name",
+    img = "Image",
+    description = "Description",
+    price = "Price",
+  } = props;
+
+  useEffect(() => {
+    props.change("name", name);
+    props.change("img", img);
+    props.change("description", description);
+    props.change("price", price);
+  }, [props, name, img, description, price]);
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <div>
-        <Field placeholder="name" name="name" component="input" type="text" />
+        <Field
+          className={styles.input}
+          placeholder={img}
+          name="img"
+          component="input"
+          type="text"
+        />
       </div>
       <div>
         <Field
-          placeholder="description"
+          className={styles.input}
+          placeholder={name}
+          name="name"
+          component="input"
+          type="text"
+        />
+      </div>
+      <div>
+        <Field
+          className={styles.input}
+          placeholder={price}
+          name="price"
+          component="input"
+          type="text"
+        />
+      </div>
+      <div>
+        <Field
+          className={styles.inputDescription}
+          placeholder={description}
           name="description"
-          component="input"
+          component="textarea"
           type="text"
         />
       </div>
       <div>
-        <Field
-          placeholder="quantity"
-          name="quantity"
-          component="input"
-          type="text"
-        />
-      </div>
-      <div>
-        <Field placeholder="image" name="img" component="input" type="text" />
-      </div>
-      <div>
-        <button>Submit</button>
+        <button name="update" className={styles.button}>
+          Update
+        </button>
+        <button name="delete" className={styles.button}>
+          Delete
+        </button>
       </div>
     </form>
   );

@@ -1,0 +1,21 @@
+.card {
+  padding: 10px;
+  border: 1px solid gray;
+}
+
+.image {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+}
+
+.description{
+  height: 280px;
+}
+
+.buttonEdit{
+  text-align: center;
+  width: 100%;
+  padding: 10px;
+  border: none;
+}

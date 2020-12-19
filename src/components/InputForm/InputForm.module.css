@@ -1,0 +1,21 @@
+.form {
+  text-align: center;
+}
+.input {
+  font-size: 18px;
+}
+.input::placeholder {
+  font-size: 18px;
+}
+
+.inputDescription {
+  composes: input;
+  height: 300px;
+}
+
+.button{
+    width: 100%;
+    height: 30px;
+    margin-bottom: 5px;
+    border: none;
+}
