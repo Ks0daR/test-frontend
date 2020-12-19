@@ -9,6 +9,7 @@ const InputForm = (props) => {
     img = "Image",
     description = "Description",
     price = "Price",
+    id,
   } = props;
 
   useEffect(() => {
@@ -16,7 +17,12 @@ const InputForm = (props) => {
     props.change("img", img);
     props.change("description", description);
     props.change("price", price);
-  }, [props, name, img, description, price]);
+    props.change("id", id);
+  }, [props, name, img, description, price, id]);
+
+  const handleClick = (e) => {
+    props.change("type", e.target.name);
+  };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
@@ -57,10 +63,10 @@ const InputForm = (props) => {
         />
       </div>
       <div>
-        <button name="update" className={styles.button}>
+        <button onClick={handleClick} name="update" className={styles.button}>
           Update
         </button>
-        <button name="delete" className={styles.button}>
+        <button onClick={handleClick} name="delete" className={styles.button}>
           Delete
         </button>
       </div>
