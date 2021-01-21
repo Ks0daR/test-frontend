@@ -11,8 +11,14 @@ const ModalWindow = () => {
 
   const dispatch = useDispatch();
 
-  const submit = ({ img, name, price, description }) => {
-    dispatch(productsOperations.addProduct({ img, name, price, description }));
+  const submit = ({ img, name, price, description, type }) => {
+    if (type === "Create") {
+      dispatch(
+        productsOperations.addProduct({ img, name, price, description })
+      );
+      handleToggle();
+    }
+
     handleToggle();
   };
 

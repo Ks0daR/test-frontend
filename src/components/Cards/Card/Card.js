@@ -9,13 +9,13 @@ const Card = ({ id, img, name, price, description }) => {
 
   const [edit, setEdit] = useState(false);
   const submit = ({ id, img, name, price, description, type }) => {
-    if (type === "update") {
+    if (type === "Update") {
       dispatch(
         productsOperations.updateProduct({ id, img, name, price, description })
       );
       setEdit(false);
     }
-    if (type === "delete") {
+    if (type === "Delete") {
       dispatch(productsOperations.deleteProduct(id));
       setEdit(false);
     }

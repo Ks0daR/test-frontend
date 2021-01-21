@@ -116,10 +116,10 @@ const InputForm = ({
         />
       </div>
       <div>
-        <button onClick={handleClick} name="update" className={styles.button}>
+        <button onClick={handleClick} name={btnPrimary} className={styles.button}>
           {btnPrimary}
         </button>
-        <button onClick={handleClick} name="delete" className={styles.button}>
+        <button onClick={handleClick} name={btnSecondary} className={styles.button}>
           {btnSecondary}
         </button>
       </div>
