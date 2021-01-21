@@ -16,7 +16,6 @@ const Card = ({ id, img, name, price, description }) => {
       setEdit(false);
     }
     if (type === "delete") {
-      console.log("!!!")
       dispatch(productsOperations.deleteProduct(id));
       setEdit(false);
     }

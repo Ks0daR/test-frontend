@@ -16,6 +16,7 @@ const deleteProductRequest = createAction("products/deleteProductRequest");
 const deleteProductSuccess = createAction("products/deleteProductSuccess");
 const deleteProductError = createAction("products/deleteProductError");
 
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   fetchProductsRequest,
   fetchProductsSuccess,

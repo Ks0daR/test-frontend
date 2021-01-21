@@ -4,15 +4,17 @@ import { Field, reduxForm } from "redux-form";
 import styles from "./InputForm.module.css";
 
 const validate = (values) => {
-  console.log(values);
   const errors = {};
   let result;
-  if (values.exist && !values.edit) {
+
+  if (values.exist) {
     result = values.exist.find((elem) => elem === values.name);
   }
+
   if (result) {
     errors.name = "Alredy exist";
   }
+
   return errors;
 };
 
@@ -21,22 +23,24 @@ const renderField = ({
   label,
   type,
   meta: { touched, error, warning },
-}) => (
-  <div>
-    <label>{label}</label>
+}) => {
+  return (
     <div>
-      <input
-        {...input}
-        placeholder="Name"
-        type={type}
-        className={styles.input}
-      />
-      {touched &&
-        ((error && <span>{error}</span>) ||
-          (warning && <span>{warning}</span>))}
+      <label>{label}</label>
+      <div>
+        <input
+          {...input}
+          placeholder="Name"
+          type={type}
+          className={styles.input}
+        />
+        {touched &&
+          ((error && <span>{error}</span>) ||
+            (warning && <span>{warning}</span>))}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const InputForm = ({
   handleSubmit,
@@ -57,17 +61,17 @@ const InputForm = ({
     change("description", description);
     change("price", price);
     change("id", id);
-  }, []);
+  }, [name, img, description, price, id]);
 
   const products = useSelector((state) => state.products.productsReducer);
-  const alredyExistNames = products.map((elem) => elem.name);
-
-  console.log(alredyExistNames);
+  const alredyExistNames = products
+    .map((elem) => elem.name)
+    .filter((elem) => elem !== name);
 
   useEffect(() => {
     change("exist", alredyExistNames);
     change("edit", onEdit);
-  }, [alredyExistNames]);
+  }, [alredyExistNames, change, onEdit]);
 
   const handleClick = ({ target: { name } }) => {
     change("type", name);
